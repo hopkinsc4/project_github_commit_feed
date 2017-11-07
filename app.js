@@ -6,7 +6,6 @@ var gitwrap = require('./gitwrap');
 
 var port = 4000;
 var host = 'localhost';
-var token = 'a5b2fad6758ffd94fe061fc92f5fb754023f204d';
 
 var server = http.createServer(function(req, res) {
     //get path
@@ -20,7 +19,7 @@ var server = http.createServer(function(req, res) {
     
     //get repo commits with gitwrap
     var commitsArr = [];
-    var getCommits = gitwrap.getRepoCommits(username, token, repo, (repoCommits) => {
+    var getCommits = gitwrap.getRepoCommits(username, repo, (repoCommits) => {
         var commits = JSON.stringify(repoCommits);
 
         var path = './data/commits.json';

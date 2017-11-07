@@ -1,0 +1,23 @@
+{
+  "name": "project_github_commit_feed",
+  "version": "1.0.0",
+  "description": "Github user repo commit feed",
+  "main": "app.js",
+  "dependencies": {
+    "github": "^12.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hopkinsc4/project_github_commit_feed.git"
+  },
+  "author": "Chris Hopkins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hopkinsc4/project_github_commit_feed/issues"
+  },
+  "homepage": "https://github.com/hopkinsc4/project_github_commit_feed#readme"
+}

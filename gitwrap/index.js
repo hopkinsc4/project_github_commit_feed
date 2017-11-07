@@ -1,19 +1,12 @@
-//personal access token for github API: a5b2fad6758ffd94fe061fc92f5fb754023f204d
 var GitHubApi = require('github');
 
 module.exports = {
-    getUserRepos: function(username, token, callback) {
+    getUserRepos: function(username, callback) {
         var github = new GitHubApi({
             headers: {
                 'User-Agent': `${username}`
             }
         });
-        
-        // TODO: optional authentication here depending on desired endpoints. See below in README.
-        github.authenticate({
-            type: 'token',
-            token: `${token}`
-        })
 
         var returnUserRepos = [];
 
@@ -36,7 +29,7 @@ module.exports = {
         })
     },
 
-    getRepoCommits: function(user, token, repoName, callback) {
+    getRepoCommits: function(user, repoName, callback) {
         var github = new GitHubApi({
             headers: {
                 'User-Agent': `${user}`
@@ -44,10 +37,7 @@ module.exports = {
         });
         
         // TODO: optional authentication here depending on desired endpoints. See below in README.
-        github.authenticate({
-            type: 'token',
-            token: `${token}`
-        })
+
 
         var returnRepoCommits = [];
         var repoCommits = new Promise( (resolve, reject) => {
