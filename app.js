@@ -22,7 +22,7 @@ var server = http.createServer(function(req, res) {
     //get url search params
     var pathname = url.parse(req.url).pathname;
     if(pathname === '/github/webhooks') {
-        console.log(url.parse(req.url, true));
+        console.log(req.url);
     }
     var path = url.parse(req.url, true);
     var username = path.query['user'];
