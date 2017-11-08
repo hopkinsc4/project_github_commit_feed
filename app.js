@@ -33,7 +33,12 @@ var server = http.createServer(function(req, res) {
 
     });
 
-
+    req.on('end', () => {
+        if(req.url === '/github/webhooks') {
+            var data = JSON.parse(req.body);
+            console.log(data);
+        }
+    });
 
     //stringify data/commits.json to use for replacement later
     //var commitsStr = JSON.stringify(commitsJSON, null, 2);
@@ -42,9 +47,10 @@ var server = http.createServer(function(req, res) {
             res.writeHead(404);
             res.end('404 Not Found');
         } else {
-            res.writeHead(200, {
+            var _headers = {
                 "Content-Type": "text/html"
-            });
+            };
+            res.writeHead(200, _headers);
             var commitsJSON = require('./data/commits.json');
             res.write(data.replace('{{ commitFeed }}',JSON.stringify(commitsJSON, null, 2)));
             res.end();
@@ -55,6 +61,11 @@ var server = http.createServer(function(req, res) {
 server.listen(port, host, function() {
     console.log(`Listening at http://${host}:${port}`);
 });
+
+
+
+
+
 
 /*
 {
