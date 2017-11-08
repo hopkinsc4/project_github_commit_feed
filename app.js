@@ -35,7 +35,7 @@ var server = http.createServer(function(req, res) {
 
     req.on('end', () => {
         if(req.url === '/github/webhooks') {
-            var data = JSON.parse(req.body);
+            var data = req.body;
             console.log(data);
         }
     });
