@@ -29,7 +29,9 @@ var server = http.createServer(function(req, res) {
     })
     req.on('end', () => {
         req.body = reqBody;
-        console.log(req.body);
+        req.body = req.body.replace('payload=', '');
+        var reqDataJson = JSON.parse(req.body);
+        console.log(reqDataJson);
     })
     
     //get url search params
