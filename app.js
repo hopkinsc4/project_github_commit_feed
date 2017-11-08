@@ -24,6 +24,7 @@ var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname;
         if(pathname === '/github/webhooks') {
             console.log(req.url);
+            console.log(data);
         }
     })
     //get url search params
