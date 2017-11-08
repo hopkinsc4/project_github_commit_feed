@@ -8,6 +8,14 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <style type="text/css">
+            pre {
+                max-height: none!important;
+            }
+            #feedform {
+                margin-bottom: 10px!important;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -20,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <form action="/commits" method="GET">
+                    <form action="/commits" method="GET" id="feedform">
                         <div class="form-group">
                             <label for="inputUser">Github User</label>
                             <input type="text" name="user" class="form-control" id="inputUser" placeholder="enter github user name">
@@ -37,7 +45,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <pre class="pre-scrollable">{{ commitFeed }}</pre>
+                    <pre>{{ commitFeed }}</pre>
                 </div>
             </div>
         </div>
