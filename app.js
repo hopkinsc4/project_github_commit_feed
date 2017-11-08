@@ -29,8 +29,9 @@ var server = http.createServer(function(req, res) {
     })
     req.on('end', () => {
         req.body = reqBody;
+        done()
         req.body = req.body.replace('payload=', '');
-        var reqDataJson = JSON.parse(req.body);
+        var reqDataJson = JSON.stringify(req.body);
         console.log(reqDataJson);
     })
     
