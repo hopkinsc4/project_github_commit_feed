@@ -19,11 +19,14 @@ var server = http.createServer(function(req, res) {
     };
     res.writeHead(200, _headers);
 
+
+    req.on('data', (data) => {
+        var pathname = url.parse(req.url).pathname;
+        if(pathname === '/github/webhooks') {
+            console.log(req.url);
+        }
+    })
     //get url search params
-    var pathname = url.parse(req.url).pathname;
-    if(pathname === '/github/webhooks') {
-        console.log(req.url);
-    }
     var path = url.parse(req.url, true);
     var username = path.query['user'];
     var repo = path.query['repo'];
