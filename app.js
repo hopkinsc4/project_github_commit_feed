@@ -13,6 +13,10 @@ var server = http.createServer(function(req, res) {
     //console.log(path);
 
     //get url search params
+    var pathname = url.parse(req.url).pathname;
+    if(pathname === '/github/webhooks') {
+        console.log(url.parse(req.url, true));
+    }
     var path = url.parse(req.url, true);
     var username = path.query['user'];
     var repo = path.query['repo'];
@@ -31,13 +35,6 @@ var server = http.createServer(function(req, res) {
             }
         });
 
-    });
-
-    req.on('data', (data) => {
-        if(req.url === '/github/webhooks') {
-            var data = req.body;
-            console.log(data);
-        }
     });
 
     //stringify data/commits.json to use for replacement later
