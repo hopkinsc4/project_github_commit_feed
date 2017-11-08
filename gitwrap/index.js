@@ -1,4 +1,5 @@
 var GitHubApi = require('github');
+var login = require('../auth/login.js');
 
 module.exports = {
     getUserRepos: function(username, callback) {
@@ -33,6 +34,13 @@ module.exports = {
             headers: {
                 "User-Agent": `${user}`
             }
+        })
+        var u = login.u();
+        var p = login.p();
+        github.authenticate({
+            type: 'basic',
+            username: `${u}`,
+            password: `${p}`
         })
 
         var returnRepoCommits = [];
