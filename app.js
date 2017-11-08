@@ -19,6 +19,7 @@ var server = http.createServer(function(req, res) {
     };
     res.writeHead(200, _headers);
 
+    
     var reqBody = '';
     req.on('data', (data) => {
         var pathname = url.parse(req.url).pathname;
