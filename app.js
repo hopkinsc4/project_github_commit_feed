@@ -11,6 +11,13 @@ var server = http.createServer(function(req, res) {
     //get path
     //var path = url.parse(req.url).pathname;
     //console.log(path);
+    var _headers = {
+        "Content-Type": "text/html",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE"
+    };
+    res.writeHead(200, _headers);
 
     //get url search params
     var pathname = url.parse(req.url).pathname;
@@ -44,13 +51,13 @@ var server = http.createServer(function(req, res) {
             res.writeHead(404);
             res.end('404 Not Found');
         } else {
-            var _headers = {
-                "Content-Type": "text/html",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE"
-            };
-            res.writeHead(200, _headers);
+            //var _headers = {
+            //    "Content-Type": "text/html",
+            //    "Access-Control-Allow-Origin": "*",
+            //    "Access-Control-Allow-Headers": "Content-Type",
+            //    "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE"
+            //};
+            //res.writeHead(200, _headers);
             var commitsJSON = require('./data/commits.json');
             res.write(data.replace('{{ commitFeed }}',JSON.stringify(commitsJSON, null, 2)));
             res.end();
