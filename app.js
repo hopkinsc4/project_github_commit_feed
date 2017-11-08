@@ -11,15 +11,11 @@ var server = http.createServer(function(req, res) {
     //get path
     //var path = url.parse(req.url).pathname;
     //console.log(path);
-    var _headers = {
-        "Content-Type": "text/html",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE"
-    };
-    res.writeHead(200, _headers);
-
     
+    
+
+
+    /* 
     var reqBody = '';
     req.on('data', (data) => {
         var pathname = url.parse(req.url).pathname;
@@ -34,12 +30,16 @@ var server = http.createServer(function(req, res) {
         var reqDataJson = JSON.parse(req.body);
         console.log(reqDataJson);
     })
-    
+    */
+
+
+
     //get url search params
     var path = url.parse(req.url, true);
     var username = path.query['user'];
     var repo = path.query['repo'];
     
+
     //get repo commits with gitwrap
     var commitsArr = [];
     var getCommits = gitwrap.getRepoCommits(username, repo, (repoCommits) => {
@@ -63,13 +63,10 @@ var server = http.createServer(function(req, res) {
             res.writeHead(404);
             res.end('404 Not Found');
         } else {
-            //var _headers = {
-            //    "Content-Type": "text/html",
-            //    "Access-Control-Allow-Origin": "*",
-            //    "Access-Control-Allow-Headers": "Content-Type",
-            //    "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE"
-            //};
-            //res.writeHead(200, _headers);
+            var _headers = {
+                "Content-Type": "text/html"
+            };
+            res.writeHead(200, _headers);
             var commitsJSON = require('./data/commits.json');
             res.write(data.replace('{{ commitFeed }}',JSON.stringify(commitsJSON, null, 2)));
             res.end();
